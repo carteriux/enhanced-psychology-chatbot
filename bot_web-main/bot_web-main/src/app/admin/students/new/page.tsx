@@ -167,6 +167,21 @@ export default function NewStudentsPage() {
                                         </p>
                                     )}
                                 </div>
+
+                                <div>
+                                    <Input
+                                        type="text"
+                                        id="cohort"
+                                        label="Cohorte"
+                                        name="cohort"
+                                        placeholder="Cohorte (opcional)"
+                                    />
+                                    {state.errors.cohort && (
+                                        <p className="text-danger text-sm mt-1">
+                                            {state.errors.cohort}
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                             {/* General error message */}
                             {state.errors.general && (

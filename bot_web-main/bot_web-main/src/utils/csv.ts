@@ -18,6 +18,7 @@ const studentSchema = z.object({
         .string()
         .nonempty("El campo de contraseña no puede estar vacío")
         .min(6, "La contraseña debe tener al menos 6 caracteres"),
+    cohort: z.string().optional(),
 })
 
 type CsvRow = Record<string, string>
@@ -31,6 +32,7 @@ function processCSVRow(row: CsvRow): ApiStudentToCreate | z.ZodError {
         enrollmentNumber: row.enrollmentNumber?.trim() || "",
         email: row.email?.trim() || "",
         password: row.password?.trim() || "",
+        cohort: row.cohort?.trim() || undefined,
     }
 
     const parsed = studentSchema.safeParse(formattedRow)

@@ -17,6 +17,7 @@ const studentSchema = z.object({
     password: z
         .string()
         .min(6, "La contraseña debe tener al menos 6 caracteres"),
+    cohort: z.string().optional(),
 })
 
 export async function createStudent(prevState: any, formData: FormData) {
