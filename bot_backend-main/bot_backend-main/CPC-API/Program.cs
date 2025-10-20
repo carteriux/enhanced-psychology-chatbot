@@ -14,10 +14,14 @@ var apiBaseSettings = new APIBaseSettings();
 builder.Configuration.GetSection("APIBaseSettings").Bind(apiBaseSettings);
 builder.Services.Configure<APIBaseSettings>(builder.Configuration.GetSection("APIBaseSettings"));
 
-builder.Services.AddDbContext<CpcContext>(options =>
+// Only add database if connection string is available
+if (!string.IsNullOrEmpty(apiBaseSettings?.ConnectionStrings?.CPConnection))
 {
-    options.UseMySQL(apiBaseSettings.ConnectionStrings.CPConnection);
-});
+    builder.Services.AddDbContext<CpcContext>(options =>
+    {
+        options.UseMySQL(apiBaseSettings.ConnectionStrings.CPConnection);
+    });
+}
 
 builder.Services.AddAuthentication(config =>
 {
@@ -34,7 +38,7 @@ builder.Services.AddAuthentication(config =>
         ValidateAudience = false,
         ValidateLifetime = true,
         ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(apiBaseSettings.Jwt.Key))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(apiBaseSettings?.Jwt?.Key ?? "default-fallback-key-for-testing"))
     };
 });
 
