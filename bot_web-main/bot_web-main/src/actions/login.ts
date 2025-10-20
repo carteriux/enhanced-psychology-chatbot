@@ -35,7 +35,7 @@ export async function login(
             })
 
             // TODO: Delete when auth is properly handled
-            cookieStore.set("is_admin", String(result.data.user.isAdmin), {
+            cookieStore.set("is_admin", String(user.isAdmin), {
                 httpOnly: true,
                 secure: config.COOKIE_SECURE,
                 path: "/",
@@ -44,7 +44,7 @@ export async function login(
 
             const redirectUrl = user.isAdmin
                 ? "/admin/students"
-                : `/students/${result.data.user.idUser}/activities`
+                : `/students/${user.idUser || 1}/activities`
 
             return {
                 success: true,
