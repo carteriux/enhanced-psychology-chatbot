@@ -1,0 +1,137 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2774F311-8E05-41E1-AFA0-EB2A031EC3B3}|CPC-API\\CPC.API.csproj|c:\\users\\cbeyer\\source\\repos\\cpc-api\\cpc-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2774F311-8E05-41E1-AFA0-EB2A031EC3B3}|CPC-API\\CPC.API.csproj|solutionrelative:cpc-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C3E570-5A25-4565-A54E-583F121E0BCD}|CPC.Application\\CPC.Application.csproj|c:\\users\\cbeyer\\source\\repos\\cpc-api\\cpc.application\\services\\serviceuseractivities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C3E570-5A25-4565-A54E-583F121E0BCD}|CPC.Application\\CPC.Application.csproj|solutionrelative:cpc.application\\services\\serviceuseractivities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2774F311-8E05-41E1-AFA0-EB2A031EC3B3}|CPC-API\\CPC.API.csproj|c:\\users\\cbeyer\\source\\repos\\cpc-api\\cpc-api\\controllers\\useractivitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2774F311-8E05-41E1-AFA0-EB2A031EC3B3}|CPC-API\\CPC.API.csproj|solutionrelative:cpc-api\\controllers\\useractivitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA3D210A-FB79-4574-AE42-D076098C0ADE}|CPC.Infrastructure.Crosscutting\\CPC.Infrastructure.Crosscutting.csproj|c:\\users\\cbeyer\\source\\repos\\cpc-api\\cpc.infrastructure.crosscutting\\dataobjects\\core\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA3D210A-FB79-4574-AE42-D076098C0ADE}|CPC.Infrastructure.Crosscutting\\CPC.Infrastructure.Crosscutting.csproj|solutionrelative:cpc.infrastructure.crosscutting\\dataobjects\\core\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BC9F540-F4AE-4528-A77B-6112D2C1BFD6}|CPC.Infrastructure.DataPersistent\\CPC.Infrastructure.DataPersistent.csproj|c:\\users\\cbeyer\\source\\repos\\cpc-api\\cpc.infrastructure.datapersistent\\repositories\\repositoryusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BC9F540-F4AE-4528-A77B-6112D2C1BFD6}|CPC.Infrastructure.DataPersistent\\CPC.Infrastructure.DataPersistent.csproj|solutionrelative:cpc.infrastructure.datapersistent\\repositories\\repositoryusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2774F311-8E05-41E1-AFA0-EB2A031EC3B3}|CPC-API\\CPC.API.csproj|c:\\users\\cbeyer\\source\\repos\\cpc-api\\cpc-api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2774F311-8E05-41E1-AFA0-EB2A031EC3B3}|CPC-API\\CPC.API.csproj|solutionrelative:cpc-api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC-API\\Program.cs",
+              "RelativeDocumentMoniker": "CPC-API\\Program.cs",
+              "ToolTip": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC-API\\Program.cs",
+              "RelativeToolTip": "CPC-API\\Program.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T01:27:24.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RepositoryUsers.cs",
+              "DocumentMoniker": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC.Infrastructure.DataPersistent\\Repositories\\RepositoryUsers.cs",
+              "RelativeDocumentMoniker": "CPC.Infrastructure.DataPersistent\\Repositories\\RepositoryUsers.cs",
+              "ToolTip": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC.Infrastructure.DataPersistent\\Repositories\\RepositoryUsers.cs",
+              "RelativeToolTip": "CPC.Infrastructure.DataPersistent\\Repositories\\RepositoryUsers.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAACwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T05:46:56.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC.Infrastructure.Crosscutting\\DataObjects\\Core\\Repository.cs",
+              "RelativeDocumentMoniker": "CPC.Infrastructure.Crosscutting\\DataObjects\\Core\\Repository.cs",
+              "ToolTip": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC.Infrastructure.Crosscutting\\DataObjects\\Core\\Repository.cs",
+              "RelativeToolTip": "CPC.Infrastructure.Crosscutting\\DataObjects\\Core\\Repository.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAkwK4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T05:39:06.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceUserActivities.cs",
+              "DocumentMoniker": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC.Application\\Services\\ServiceUserActivities.cs",
+              "RelativeDocumentMoniker": "CPC.Application\\Services\\ServiceUserActivities.cs",
+              "ToolTip": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC.Application\\Services\\ServiceUserActivities.cs",
+              "RelativeToolTip": "CPC.Application\\Services\\ServiceUserActivities.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T21:08:59.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC-API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "CPC-API\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC-API\\appsettings.Development.json",
+              "RelativeToolTip": "CPC-API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-27T02:34:50.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserActivitiesController.cs",
+              "DocumentMoniker": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC-API\\Controllers\\UserActivitiesController.cs",
+              "RelativeDocumentMoniker": "CPC-API\\Controllers\\UserActivitiesController.cs",
+              "ToolTip": "C:\\Users\\cbeyer\\source\\repos\\CPC-API\\CPC-API\\Controllers\\UserActivitiesController.cs",
+              "RelativeToolTip": "CPC-API\\Controllers\\UserActivitiesController.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAIwAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T02:16:21.128Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

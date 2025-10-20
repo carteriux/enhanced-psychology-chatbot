@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPC.Domain\CPC.Domain.csproj" />
+    <ProjectReference Include="..\CPC.Infrastructure.Crosscutting\CPC.Infrastructure.Crosscutting.csproj" />
+    <ProjectReference Include="..\CPC.Infrastructure.DataPersistent\CPC.Infrastructure.DataPersistent.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPC.Domain\CPC.Domain.csproj" />
+    <ProjectReference Include="..\CPC.Infrastructure.Crosscutting\CPC.Infrastructure.Crosscutting.csproj" />
+  </ItemGroup>
+
+</Project>

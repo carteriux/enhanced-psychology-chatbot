@@ -1,0 +1,13 @@
+test_results/
+.venv/
+__pycache__/
+.vscode/
+bot-psicoterapia.yml
+.gitignore
+Activity_1_test.pdf
+Case Formulation Ari Ortega .docx
+prueba_psicoanalisis.ipynb
+test_notebook.ipynb
+TestActivity1_test.pdf
+TestActivity2_test.pdf
+TestActivity3_test.pdf

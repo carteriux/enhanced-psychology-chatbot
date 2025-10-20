@@ -1,0 +1,8 @@
+Flask==3.1.0
+gunicorn==23.0.0
+langchain
+langchain-google-firestore
+langchain-google-vertexai
+firebase-admin
+reportlab
+pytz

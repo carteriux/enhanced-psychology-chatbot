@@ -1,0 +1,92 @@
+openapi: '3.0.3'
+info:
+  title: 'Asistente digital: Escuela de Psicoterapia'
+  version: '1.0'
+  
+servers:
+  - url: https://chatbot-cpc-141094916495.us-south1.run.app
+    description: API en el entorno de producción.
+  - url: http://127.0.0.1:5000
+    description: API local de desarrollo.
+    
+paths:
+  /bot:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userQuery"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/botResponse"
+        '400':
+          description: Bad request
+  /generate_chat_pdf:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/generate_chat_pdf_request"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                $ref: "#/components/schemas/generate_chat_pdf_response"
+        '400':
+          description: Bad request
+
+components:
+  schemas:
+    userQuery:
+      type: object
+      required:
+        - user_id
+        - question
+        - activity_id
+      properties:
+        user_id:
+          type: string
+          example: "Test-id"
+        question:
+          type: string
+          example: "¿Has tenido episodios depresivos en el pasado?"
+        activity_id:
+          type: string
+          example: "DA1"
+          
+    botResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          example: {"code": 200, "message": "ok"}
+        data:
+          type: string
+          example: "Sí, he tenido algunos episodios depresivos en el pasado. El primero fue cuando tenía 13 años, y luego otro hace 3 años debido a problemas en mi matrimonio.  Y ahora estoy pasando por otro episodio. \n"
+          
+    generate_chat_pdf_request:
+      type: object
+      required:
+        - user_id
+        - activity_id 
+      properties:
+        user_id:
+          type: string
+          example: "Test-id"
+        activity_id:
+          type: string
+          example: "DA1"
+          
+    generate_chat_pdf_response:
+      type: string
+      format: binary
