@@ -15,7 +15,7 @@ ENV TEST_USER_ID="Test-id"
 ENV BUCKET_NAME="actividades-pdfs"
 ENV LANGSMITH_TRACING="true"
 ENV LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
-ENV LANGSMITH_API_KEY="[REDACTED]"
+# ENV LANGSMITH_API_KEY will be set at runtime via Cloud Run environment variables
 ENV LANGSMITH_PROJECT="asistente digital psicoterapia"
 
 # Copy local code to the container image.
