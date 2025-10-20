@@ -57,6 +57,10 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+// Configure port for Cloud Run
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 app.UseSwagger();
 app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", "CPC - API"));
 
