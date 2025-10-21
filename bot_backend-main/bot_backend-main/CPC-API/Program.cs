@@ -110,23 +110,64 @@ app.MapGet("/api/User/cohort", (HttpRequest req) =>
 });
 
 // Test login endpoint that doesn't crash
-app.MapPost("/api/Security/login", (object request) => 
+app.MapPost("/api/Security/login", async (HttpRequest req) => 
 {
+    string? id = null;
+    string? email = null;
+
+    try
+    {
+        using var reader = new StreamReader(req.Body);
+        var body = await reader.ReadToEndAsync();
+        if (!string.IsNullOrWhiteSpace(body))
+        {
+            using var doc = System.Text.Json.JsonDocument.Parse(body);
+            var root = doc.RootElement;
+            if (root.TryGetProperty("id", out var idProp)) id = idProp.GetString();
+            if (root.TryGetProperty("email", out var emailProp)) email = emailProp.GetString();
+        }
+    }
+    catch { }
+
+    bool isAdmin = string.Equals(id, "ADMIN001", StringComparison.OrdinalIgnoreCase)
+                   || string.Equals(email, "admin@test.com", StringComparison.OrdinalIgnoreCase);
+
+    // Map some sample students by enrollment
+    int idUser = 1;
+    string firstName = "Estudiante";
+    string lastName = "Demo";
+    string enrollmentNumber = id ?? "STUDENT";
+    string cohort = "Demo";
+
+    if (string.Equals(id, "10808", StringComparison.OrdinalIgnoreCase))
+    {
+        idUser = 1; firstName = "Magda"; lastName = "Sanchez Morales"; enrollmentNumber = "10808"; cohort = "Maestria Puebla 36";
+    }
+    else if (string.Equals(id, "10486", StringComparison.OrdinalIgnoreCase))
+    {
+        idUser = 2; firstName = "Sergio"; lastName = "Rosas navarro"; enrollmentNumber = "10486"; cohort = "Maestria GDL 36";
+    }
+
+    if (isAdmin)
+    {
+        idUser = 999; firstName = "Admin"; lastName = "User"; enrollmentNumber = "ADMIN001"; cohort = "Admin";
+    }
+
     return Results.Ok(new { 
         success = true, 
         message = "Login endpoint working - authentication disabled for testing",
         data = new { 
             token = "test-token", 
             user = new { 
-                idUser = 1,
-                email = "admin@test.com",
-                firstName = "Admin",
-                lastName = "User",
-                enrollmentNumber = "ADMIN001",
+                idUser,
+                email = isAdmin ? "admin@test.com" : $"{enrollmentNumber}@example.com",
+                firstName,
+                lastName,
+                enrollmentNumber,
                 isFirstTime = false,
                 lastAccessDate = DateTime.Now,
-                isAdmin = true,
-                cohort = "Admin"
+                isAdmin,
+                cohort
             } 
         }
     });
