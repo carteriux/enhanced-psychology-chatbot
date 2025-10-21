@@ -66,8 +66,10 @@ app.MapGet("/api/students", () =>
 });
 
 // Students filtered by cohort endpoint
-app.MapGet("/api/User/cohort", (string? cohort) => 
+app.MapGet("/api/User/cohort", (HttpRequest req) => 
 {
+    string cohort = req.Query.ContainsKey("cohort") ? req.Query["cohort"].ToString() : string.Empty;
+
     var allStudents = new[] {
         new {
             idUser = 1,
@@ -86,20 +88,18 @@ app.MapGet("/api/User/cohort", (string? cohort) =>
             cohort = "Maestria GDL 36"
         }
     };
-    
-    var filteredStudents = allStudents;
-    if (!string.IsNullOrEmpty(cohort))
-    {
-        filteredStudents = allStudents.Where(s => s.cohort.Equals(cohort, StringComparison.OrdinalIgnoreCase)).ToArray();
-    }
-    
+
+    var filteredStudents = string.IsNullOrEmpty(cohort)
+        ? allStudents
+        : Array.FindAll(allStudents, s => string.Equals(s.cohort, cohort, StringComparison.OrdinalIgnoreCase));
+
     var response = new {
         success = true,
         data = new {
             users = filteredStudents
         }
     };
-    
+
     return Results.Json(response);
 });
 
