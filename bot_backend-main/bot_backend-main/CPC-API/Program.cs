@@ -296,6 +296,47 @@ app.MapGet("/api/UserActivities/GetActivityById", (int id, int idUser) =>
     return Results.Json(response);
 });
 
+// Proxy endpoint to forward chat questions to existing chatbot-back service
+app.MapPost("/api/UserActivities/ActivityQuestions", async (object request) => 
+{
+    try
+    {
+        var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
+        var chatbotBackUrl = "https://chatbot-back-141094916495.us-south1.run.app/bot";
+        
+        var jsonContent = new StringContent(
+            System.Text.Json.JsonSerializer.Serialize(request),
+            System.Text.Encoding.UTF8,
+            "application/json"
+        );
+        
+        var response = await httpClient.PostAsync(chatbotBackUrl, jsonContent);
+        var responseContent = await response.Content.ReadAsStringAsync();
+        
+        if (response.IsSuccessStatusCode)
+        {
+            return Results.Ok(new { 
+                success = true,
+                data = new { message = responseContent }
+            });
+        }
+        else
+        {
+            return Results.Ok(new { 
+                success = false,
+                error = "Error from chatbot service"
+            });
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Ok(new { 
+            success = false,
+            error = $"Error: {ex.Message}"
+        });
+    }
+});
+
 // Reset activities for all students in a cohort (testing mode)
 app.MapPost("/api/UserActivities/ResetActivitiesByCohort", (HttpRequest req) =>
 {
