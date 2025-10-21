@@ -83,37 +83,48 @@ app.MapPost("/api/User/createmultipleusers", (object request) =>
     });
 });
 
+// Simple test endpoint first
+app.MapGet("/api/User/test", () => 
+{
+    return Results.Json("API User endpoint working");
+});
+
 // Test get all users endpoint
 app.MapGet("/api/User", () => 
 {
-    var users = new[]
+    try
     {
-        new {
-            idUser = 1,
-            firstName = "Magda",
-            middleName = "",
-            lastName = "Sánchez Morales", 
-            enrollmentNumber = "10808",
-            cohort = "Maestria Puebla 36"
-        },
-        new {
-            idUser = 2,
-            firstName = "Sergio",
-            middleName = "", 
-            lastName = "Rosas navarro",
-            enrollmentNumber = "10486", 
-            cohort = "Maestria GDL 36"
-        }
-    };
-    
-    var response = new {
-        success = true,
-        data = new {
-            users = users
-        }
-    };
-    
-    return Results.Json(response);
+        var response = new {
+            success = true,
+            data = new {
+                users = new[] {
+                    new {
+                        idUser = 1,
+                        firstName = "Magda",
+                        middleName = "",
+                        lastName = "Sanchez Morales", 
+                        enrollmentNumber = "10808",
+                        cohort = "Maestria Puebla 36"
+                    },
+                    new {
+                        idUser = 2,
+                        firstName = "Sergio",
+                        middleName = "", 
+                        lastName = "Rosas navarro",
+                        enrollmentNumber = "10486", 
+                        cohort = "Maestria GDL 36"
+                    }
+                }
+            }
+        };
+        
+        return Results.Json(response);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in /api/User: {ex.Message}");
+        return Results.Problem("Internal server error");
+    }
 });
 
 // Test get cohorts endpoint
