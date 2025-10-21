@@ -10,8 +10,8 @@ import { fetchWithAuth } from "@/lib/fetch"
 
 const studentSchema = z.object({
     firstName: z.string().min(1, "El nombre es obligatorio"),
-    lastName: z.string().min(1, "El apellido paterno es obligatorio"),
-    middleName: z.string().min(1, "El apellido materno es obligatorio"),
+    lastName: z.string().min(1, "Los apellidos son obligatorios"),
+    middleName: z.string().optional(),
     enrollmentNumber: z.string().min(1, "La matrícula es obligatoria"),
     email: z.string().email("El correo electrónico no es válido"),
     password: z

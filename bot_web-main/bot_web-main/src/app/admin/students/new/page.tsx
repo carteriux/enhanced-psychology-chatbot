@@ -96,25 +96,10 @@ export default function NewStudentsPage() {
                                 <div>
                                     <Input
                                         type="text"
-                                        id="middleName"
-                                        label="Apellido paterno"
-                                        name="middleName"
-                                        placeholder="Apellido paterno"
-                                    />
-                                    {state.errors.middleName && (
-                                        <p className="text-danger text-sm mt-1">
-                                            {state.errors.middleName}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div>
-                                    <Input
-                                        type="text"
                                         id="lastName"
-                                        label="Apellido materno"
+                                        label="Apellidos"
                                         name="lastName"
-                                        placeholder="Apellido materno"
+                                        placeholder="Apellidos"
                                     />
                                     {state.errors.lastName && (
                                         <p className="text-danger text-sm mt-1">

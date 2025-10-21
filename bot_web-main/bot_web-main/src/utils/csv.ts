@@ -7,8 +7,8 @@ import { CustomCSVError } from "./error"
 // Zod schema
 const studentSchema = z.object({
     firstName: z.string().min(1, "El nombre es obligatorio"),
-    middleName: z.string().min(1, "El apellido paterno es obligatorio"),
-    lastName: z.string().min(1, "El apellido materno es obligatorio"),
+    middleName: z.string().optional(),
+    lastName: z.string().min(1, "Los apellidos son obligatorios"),
     enrollmentNumber: z.string().min(1, "La matrícula es obligatoria"),
     email: z
         .string()
@@ -28,7 +28,7 @@ function processCSVRow(row: CsvRow): ApiStudentToCreate | z.ZodError {
     const formattedRow = {
         firstName: row.firstName?.trim() || "",
         lastName: row.lastName?.trim() || "",
-        middleName: row.middleName?.trim() || "",
+        middleName: row.middleName?.trim() || undefined,
         enrollmentNumber: row.enrollmentNumber?.trim() || "",
         email: row.email?.trim() || "",
         password: row.password?.trim() || "",
