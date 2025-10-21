@@ -195,7 +195,7 @@ export async function sendActivityQuestion({
 
 export async function fetchUsers(): Promise<StudentPublicAdmin[] | null> {
     try {
-        const response = await fetchWithAuth(`${config.BACKEND_URL}/api/User`, {
+        const response = await fetchWithAuth(`${config.BACKEND_URL}/api/Users/all`, {
             cache: "no-store",
         })
 
@@ -328,7 +328,7 @@ export async function resetUserActivities(userId: number): Promise<{ success: bo
 
 export async function getCohorts(): Promise<string[]> {
     try {
-        const response = await fetchWithAuth(`${config.BACKEND_URL}/api/User`, {
+        const response = await fetchWithAuth(`${config.BACKEND_URL}/api/Users/all`, {
             cache: "no-store",
         })
 
