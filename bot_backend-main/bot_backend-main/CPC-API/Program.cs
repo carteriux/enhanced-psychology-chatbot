@@ -89,8 +89,8 @@ app.MapGet("/api/User/test", () =>
     return Results.Json("API User endpoint working");
 });
 
-// Test get all users endpoint
-app.MapGet("/api/User", () => 
+// Test get all users endpoint - using different path to avoid conflicts
+app.MapGet("/api/Users/all", () => 
 {
     try
     {
@@ -122,7 +122,7 @@ app.MapGet("/api/User", () =>
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Error in /api/User: {ex.Message}");
+        Console.WriteLine($"Error in /api/Users/all: {ex.Message}");
         return Results.Problem("Internal server error");
     }
 });
