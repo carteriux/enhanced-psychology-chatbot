@@ -141,6 +141,28 @@ export async function bulkCreateStudents(prevState: any, formData: FormData) {
     }
 }
 
+export async function resetCohortActivitiesAction(cohort: string) {
+    try {
+        const res = await fetchWithAuth(
+            `${config.BACKEND_URL}/api/UserActivities/ResetActivitiesByCohort?cohort=${encodeURIComponent(cohort)}`,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            }
+        )
+
+        if (!res.ok) {
+            throw new Error("No se pudo restaurar la cohorte.")
+        }
+
+        const data = await res.json()
+        return { success: true, message: data?.data?.message as string }
+    } catch (error) {
+        console.error("Error restaurando cohorte:", error)
+        return { success: false, message: "Hubo un error al restaurar la cohorte." }
+    }
+}
+
 export async function deleteStudentById(id: number) {
     try {
         const res = await fetchWithAuth(

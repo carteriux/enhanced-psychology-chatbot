@@ -6,7 +6,31 @@ import { StudentPublicAdmin } from "@/types/student"
 import DeleteStudentButton from "@/components/admin/DeleteStudentButton"
 import RestoreActivitiesButton from "@/components/admin/RestoreActivitiesButton"
 import CohortFilter from "@/components/admin/CohortFilter"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useTransition } from "react"
+import { resetCohortActivitiesAction } from "@/actions/student"
+
+function RestoreCohortButton({ cohort }: { cohort: string }) {
+    const [isPending, startTransition] = useTransition()
+
+    const onRestore = () => {
+        if (confirm(`¿Estás seguro de que quieres restaurar la cohorte "${cohort}"? Esta acción eliminará el progreso de todos los alumnos.`)) {
+            startTransition(async () => {
+                const res = await resetCohortActivitiesAction(cohort)
+                alert(res.message || (res.success ? "Cohorte restaurada" : "No se pudo restaurar la cohorte"))
+            })
+        }
+    }
+
+    return (
+        <button
+            onClick={onRestore}
+            disabled={isPending}
+            className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium rounded-md transition-colors"
+        >
+            {isPending ? "Restaurando..." : "Restaurar Cohorte"}
+        </button>
+    )
+}
 
 export default function StudentsPage() {
     const [studentsData, setStudentsData] = useState<StudentPublicAdmin[] | null>(null)
@@ -89,16 +113,7 @@ export default function StudentsPage() {
                                 onCohortChange={setSelectedCohort}
                             />
                             {selectedCohort && (
-                                <button
-                                    onClick={() => {
-                                        if (confirm(`¿Estás seguro de que quieres restaurar las actividades de todos los estudiantes de la cohorte "${selectedCohort}"?`)) {
-                                            alert(`Funcionalidad de restaurar cohorte "${selectedCohort}" - En desarrollo`)
-                                        }
-                                    }}
-                                    className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium rounded-md transition-colors"
-                                >
-                                    Restaurar Cohorte
-                                </button>
+                                <RestoreCohortButton cohort={selectedCohort} />
                             )}
                             <NavButton
                                 size="sm"
