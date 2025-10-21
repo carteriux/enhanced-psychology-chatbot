@@ -267,8 +267,8 @@ export async function downloadActivityFile({
 export async function fetchUsersByCohort(cohort?: string): Promise<StudentPublicAdmin[] | null> {
     try {
         const url = cohort 
-            ? `${config.BACKEND_URL}/api/User/cohort?cohort=${encodeURIComponent(cohort)}`
-            : `${config.BACKEND_URL}/api/User/cohort`
+            ? `${config.BACKEND_URL}/api/students?cohort=${encodeURIComponent(cohort)}`
+            : `${config.BACKEND_URL}/api/students`
             
         const response = await fetchWithAuth(url, {
             cache: "no-store",
