@@ -219,8 +219,8 @@ app.MapGet("/api/User/2", () =>
     return Results.Json(response);
 });
 
-// Get activities for a user
-app.MapGet("/api/UserActivities/GetActivitiesByUserId/{userId}", (int userId) => 
+// Get activities for a user (hardcoded for userId 1 and 2)
+app.MapGet("/api/UserActivities/GetActivitiesByUserId/1", () => 
 {
     var activities = new[] {
         new {
@@ -233,6 +233,34 @@ app.MapGet("/api/UserActivities/GetActivitiesByUserId/{userId}", (int userId) =>
         },
         new {
             id = 2,
+            progressPercentage = 0,
+            filePath = "/activities/assessment",
+            idActivity = 2,
+            activityName = "Assessment",
+            endDateTime = (string?)null
+        }
+    };
+    
+    var response = new { 
+        success = true, 
+        data = activities
+    };
+    return Results.Json(response);
+});
+
+app.MapGet("/api/UserActivities/GetActivitiesByUserId/2", () => 
+{
+    var activities = new[] {
+        new {
+            id = 3,
+            progressPercentage = 0,
+            filePath = "/activities/chatbot",
+            idActivity = 1,
+            activityName = "Chatbot",
+            endDateTime = (string?)null
+        },
+        new {
+            id = 4,
             progressPercentage = 0,
             filePath = "/activities/assessment",
             idActivity = 2,
