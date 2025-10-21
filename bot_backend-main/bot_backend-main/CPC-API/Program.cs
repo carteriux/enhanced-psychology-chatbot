@@ -35,6 +35,36 @@ app.UseCors("AllowAll");
 // Simple health check endpoint
 app.MapGet("/health", () => "API is running");
 
+// Working students endpoint for frontend
+app.MapGet("/api/students", () => 
+{
+    var response = new {
+        success = true,
+        data = new {
+            users = new[] {
+                new {
+                    idUser = 1,
+                    firstName = "Magda",
+                    middleName = "",
+                    lastName = "Sanchez Morales", 
+                    enrollmentNumber = "10808",
+                    cohort = "Maestria Puebla 36"
+                },
+                new {
+                    idUser = 2,
+                    firstName = "Sergio",
+                    middleName = "", 
+                    lastName = "Rosas navarro",
+                    enrollmentNumber = "10486", 
+                    cohort = "Maestria GDL 36"
+                }
+            }
+        }
+    };
+    
+    return Results.Json(response);
+});
+
 // Test login endpoint that doesn't crash
 app.MapPost("/api/Security/login", (object request) => 
 {
