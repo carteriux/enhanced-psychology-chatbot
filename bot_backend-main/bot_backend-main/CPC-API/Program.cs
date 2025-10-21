@@ -87,9 +87,11 @@ app.MapGet("/api/User/cohort", (string? cohort) =>
         }
     };
     
-    var filteredStudents = string.IsNullOrEmpty(cohort) 
-        ? allStudents 
-        : allStudents.Where(s => s.cohort == cohort).ToArray();
+    var filteredStudents = allStudents;
+    if (!string.IsNullOrEmpty(cohort))
+    {
+        filteredStudents = allStudents.Where(s => s.cohort.Equals(cohort, StringComparison.OrdinalIgnoreCase)).ToArray();
+    }
     
     var response = new {
         success = true,
