@@ -190,6 +190,28 @@ app.MapPost("/api/User/createmultipleusers", (object request) =>
     });
 });
 
+// Get individual user by ID
+app.MapGet("/api/User/{userId}", (int userId) => 
+{
+    var user = userId == 1 
+        ? new { 
+            idUser = 1, email = "magda@example.com", firstName = "Magda", lastName = "Sanchez Morales",
+            middleName = "", enrollmentNumber = "10808", cohort = "Maestria Puebla 36"
+        }
+        : userId == 2
+        ? new { 
+            idUser = 2, email = "sergio@example.com", firstName = "Sergio", lastName = "Rosas navarro",
+            middleName = "", enrollmentNumber = "10486", cohort = "Maestria GDL 36"
+        }
+        : new { 
+            idUser = userId, email = "student@example.com", firstName = "Student", lastName = "User",
+            middleName = "", enrollmentNumber = "STUDENT", cohort = "Demo"
+        };
+
+    var response = new { success = true, data = new { user } };
+    return Results.Json(response);
+});
+
 // Reset activities for all students in a cohort (testing mode)
 app.MapPost("/api/UserActivities/ResetActivitiesByCohort", (HttpRequest req) =>
 {
