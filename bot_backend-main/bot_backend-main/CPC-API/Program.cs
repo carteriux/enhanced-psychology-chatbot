@@ -41,7 +41,45 @@ app.MapPost("/api/Security/login", (object request) =>
     return Results.Ok(new { 
         success = true, 
         message = "Login endpoint working - authentication disabled for testing",
-        data = new { token = "test-token", user = new { isAdmin = true } }
+        data = new { 
+            token = "test-token", 
+            user = new { 
+                idUser = 1,
+                email = "admin@test.com",
+                firstName = "Admin",
+                lastName = "User",
+                enrollmentNumber = "ADMIN001",
+                isFirstTime = false,
+                lastAccessDate = DateTime.Now,
+                isAdmin = true,
+                cohort = "Admin"
+            } 
+        }
+    });
+});
+
+// Test single user creation endpoint
+app.MapPost("/api/User", (object request) => 
+{
+    return Results.Ok(new { 
+        success = true, 
+        message = "User created successfully - testing mode",
+        data = new { 
+            idUser = new Random().Next(1000, 9999),
+            message = "Student registered successfully"
+        }
+    });
+});
+
+// Test bulk user creation endpoint
+app.MapPost("/api/User/createmultipleusers", (object request) => 
+{
+    return Results.Ok(new { 
+        success = true, 
+        message = "Multiple users created successfully - testing mode",
+        data = new { 
+            message = "All students registered successfully"
+        }
     });
 });
 
