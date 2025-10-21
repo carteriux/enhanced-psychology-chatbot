@@ -157,6 +157,17 @@ app.MapPost("/api/User/createmultipleusers", (object request) =>
     });
 });
 
+// Reset activities for all students in a cohort (testing mode)
+app.MapPost("/api/UserActivities/ResetActivitiesByCohort", (HttpRequest req) =>
+{
+    string cohort = req.Query.ContainsKey("cohort") ? req.Query["cohort"].ToString() : string.Empty;
+    var response = new {
+        success = true,
+        data = new { message = string.IsNullOrEmpty(cohort) ? "Activities reset for all cohorts (testing)" : $"Activities reset for cohort '{cohort}' (testing)" }
+    };
+    return Results.Json(response);
+});
+
 // Simple test endpoint first
 app.MapGet("/api/User/test", () => 
 {
