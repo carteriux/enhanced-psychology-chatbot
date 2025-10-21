@@ -120,13 +120,7 @@ export default function StudentsPage() {
                                         scope="col"
                                         className="p-4 text-left font-semibold"
                                     >
-                                        Apellido paterno
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="p-4 text-left font-semibold"
-                                    >
-                                        Apellido materno
+                                        Apellidos
                                     </th>
                                     <th
                                         scope="col"
@@ -169,9 +163,6 @@ export default function StudentsPage() {
                                                 </td>
                                                 <td className="border-b border-gray-2 p-4 font-normal">
                                                     {firstName}
-                                                </td>
-                                                <td className="border-b border-gray-2 p-4 font-normal">
-                                                    {middleName}
                                                 </td>
                                                 <td className="border-b border-gray-2 p-4 font-normal">
                                                     {lastName}
