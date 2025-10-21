@@ -219,6 +219,35 @@ app.MapGet("/api/User/2", () =>
     return Results.Json(response);
 });
 
+// Get activities for a user
+app.MapGet("/api/UserActivities/GetActivitiesByUserId/{userId}", (int userId) => 
+{
+    var activities = new[] {
+        new {
+            id = 1,
+            progressPercentage = 0,
+            filePath = "/activities/chatbot",
+            idActivity = 1,
+            activityName = "Chatbot",
+            endDateTime = (string?)null
+        },
+        new {
+            id = 2,
+            progressPercentage = 0,
+            filePath = "/activities/assessment",
+            idActivity = 2,
+            activityName = "Assessment",
+            endDateTime = (string?)null
+        }
+    };
+    
+    var response = new { 
+        success = true, 
+        data = activities
+    };
+    return Results.Json(response);
+});
+
 // Reset activities for all students in a cohort (testing mode)
 app.MapPost("/api/UserActivities/ResetActivitiesByCohort", (HttpRequest req) =>
 {
