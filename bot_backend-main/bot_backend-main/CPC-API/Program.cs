@@ -65,6 +65,42 @@ app.MapGet("/api/students", () =>
     return Results.Json(response);
 });
 
+// Students filtered by cohort endpoint
+app.MapGet("/api/User/cohort", (string? cohort) => 
+{
+    var allStudents = new[] {
+        new {
+            idUser = 1,
+            firstName = "Magda",
+            middleName = "",
+            lastName = "Sanchez Morales", 
+            enrollmentNumber = "10808",
+            cohort = "Maestria Puebla 36"
+        },
+        new {
+            idUser = 2,
+            firstName = "Sergio",
+            middleName = "", 
+            lastName = "Rosas navarro",
+            enrollmentNumber = "10486", 
+            cohort = "Maestria GDL 36"
+        }
+    };
+    
+    var filteredStudents = string.IsNullOrEmpty(cohort) 
+        ? allStudents 
+        : allStudents.Where(s => s.cohort == cohort).ToArray();
+    
+    var response = new {
+        success = true,
+        data = new {
+            users = filteredStudents
+        }
+    };
+    
+    return Results.Json(response);
+});
+
 // Test login endpoint that doesn't crash
 app.MapPost("/api/Security/login", (object request) => 
 {
