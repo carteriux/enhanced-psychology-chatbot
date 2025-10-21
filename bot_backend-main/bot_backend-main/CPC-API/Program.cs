@@ -110,27 +110,19 @@ app.MapGet("/api/User/cohort", (HttpRequest req) =>
 });
 
 // Test login endpoint that doesn't crash
-app.MapPost("/api/Security/login", async (HttpRequest req) => 
+app.MapPost("/api/Security/login", (object request) => 
 {
+    // For testing - accept any login
     string? id = null;
-    string? email = null;
-
-    try
+    
+    // Try to extract id from request body if it's a dictionary
+    if (request is System.Collections.Generic.Dictionary<string, object> dict)
     {
-        using var reader = new StreamReader(req.Body);
-        var body = await reader.ReadToEndAsync();
-        if (!string.IsNullOrWhiteSpace(body))
-        {
-            using var doc = System.Text.Json.JsonDocument.Parse(body);
-            var root = doc.RootElement;
-            if (root.TryGetProperty("id", out var idProp)) id = idProp.GetString();
-            if (root.TryGetProperty("email", out var emailProp)) email = emailProp.GetString();
-        }
+        dict.TryGetValue("id", out var idVal);
+        id = idVal?.ToString();
     }
-    catch { }
 
-    bool isAdmin = string.Equals(id, "ADMIN001", StringComparison.OrdinalIgnoreCase)
-                   || string.Equals(email, "admin@test.com", StringComparison.OrdinalIgnoreCase);
+    bool isAdmin = string.Equals(id, "ADMIN001", StringComparison.OrdinalIgnoreCase);
 
     // Map some sample students by enrollment
     int idUser = 1;
