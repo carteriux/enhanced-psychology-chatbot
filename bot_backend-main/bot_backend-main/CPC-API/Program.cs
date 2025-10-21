@@ -86,29 +86,34 @@ app.MapPost("/api/User/createmultipleusers", (object request) =>
 // Test get all users endpoint
 app.MapGet("/api/User", () => 
 {
-    return Results.Ok(new {
+    var users = new[]
+    {
+        new {
+            idUser = 1,
+            firstName = "Magda",
+            middleName = "",
+            lastName = "Sánchez Morales", 
+            enrollmentNumber = "10808",
+            cohort = "Maestria Puebla 36"
+        },
+        new {
+            idUser = 2,
+            firstName = "Sergio",
+            middleName = "", 
+            lastName = "Rosas navarro",
+            enrollmentNumber = "10486", 
+            cohort = "Maestria GDL 36"
+        }
+    };
+    
+    var response = new {
         success = true,
         data = new {
-            users = new[] {
-                new {
-                    idUser = 1,
-                    firstName = "Magda",
-                    middleName = "",
-                    lastName = "Sánchez Morales", 
-                    enrollmentNumber = "10808",
-                    cohort = "Maestria Puebla 36"
-                },
-                new {
-                    idUser = 2,
-                    firstName = "Sergio",
-                    middleName = "", 
-                    lastName = "Rosas navarro",
-                    enrollmentNumber = "10486", 
-                    cohort = "Maestria GDL 36"
-                }
-            }
+            users = users
         }
-    });
+    };
+    
+    return Results.Json(response);
 });
 
 // Test get cohorts endpoint
