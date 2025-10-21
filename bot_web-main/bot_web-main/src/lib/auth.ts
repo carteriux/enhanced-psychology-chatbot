@@ -19,7 +19,8 @@ export async function getUser() {
 
     // For testing with "test-token", bypass JWT validation
     if (token === "test-token") {
-        return { token, isAdmin, userId: "1" }
+        const userIdCookie = cookieStore.get("user_id")?.value
+        return { token, isAdmin, userId: userIdCookie ?? "1" }
     }
 
     try {

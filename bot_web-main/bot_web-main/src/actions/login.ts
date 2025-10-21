@@ -42,6 +42,14 @@ export async function login(
                 maxAge: config.COOKIE_MAX_AGE,
             })
 
+            // Store user id for test-token flows
+            cookieStore.set("user_id", String(user.idUser), {
+                httpOnly: true,
+                secure: config.COOKIE_SECURE,
+                path: "/",
+                maxAge: config.COOKIE_MAX_AGE,
+            })
+
             const redirectUrl = user.isAdmin
                 ? "/admin/students"
                 : `/students/${user.idUser || 1}/activities`
