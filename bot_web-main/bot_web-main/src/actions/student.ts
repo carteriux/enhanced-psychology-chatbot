@@ -30,7 +30,7 @@ export async function createStudent(prevState: any, formData: FormData) {
         const validatedData: ApiStudentToCreate =
             studentSchema.parse(formDataObj)
 
-        const response = await fetchWithAuth(`${config.BACKEND_URL}/api/User`, {
+        const response = await fetchWithAuth(`${config.BACKEND_URL}/api/User/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(validatedData),
