@@ -25,14 +25,21 @@ type CsvRow = Record<string, string>
 
 // Process and validate a CSV Row
 function processCSVRow(row: CsvRow): ApiStudentToCreate | z.ZodError {
-    const formattedRow = {
+    const formattedRow: any = {
         firstName: row.firstName?.trim() || "",
         lastName: row.lastName?.trim() || "",
-        middleName: row.middleName?.trim() || undefined,
         enrollmentNumber: row.enrollmentNumber?.trim() || "",
         email: row.email?.trim() || "",
         password: row.password?.trim() || "",
-        cohort: row.cohort?.trim() || undefined,
+    }
+    
+    // Only add optional fields if they exist and are not empty
+    if (row.middleName && row.middleName.trim()) {
+        formattedRow.middleName = row.middleName.trim()
+    }
+    
+    if (row.cohort && row.cohort.trim()) {
+        formattedRow.cohort = row.cohort.trim()
     }
 
     const parsed = studentSchema.safeParse(formattedRow)
