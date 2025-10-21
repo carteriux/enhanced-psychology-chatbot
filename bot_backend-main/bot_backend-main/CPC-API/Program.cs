@@ -83,6 +83,38 @@ app.MapPost("/api/User/createmultipleusers", (object request) =>
     });
 });
 
+// Test get all users endpoint
+app.MapGet("/api/User", () => 
+{
+    return Results.Ok(new[] {
+        new {
+            id = 1,
+            firstName = "Magda",
+            middleName = "",
+            lastName = "Sánchez Morales", 
+            enrollmentNumber = "10808",
+            cohort = "Maestria Puebla 36"
+        },
+        new {
+            id = 2,
+            firstName = "Sergio",
+            middleName = "", 
+            lastName = "Rosas navarro",
+            enrollmentNumber = "10486", 
+            cohort = "Maestria GDL 36"
+        }
+    });
+});
+
+// Test get cohorts endpoint
+app.MapGet("/api/Cohort", () => 
+{
+    return Results.Ok(new[] {
+        "Maestria Puebla 36",
+        "Maestria GDL 36"
+    });
+});
+
 app.MapControllers();
 
 app.Run();
