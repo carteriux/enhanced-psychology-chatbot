@@ -88,6 +88,18 @@ export default function StudentsPage() {
                                 selectedCohort={selectedCohort}
                                 onCohortChange={setSelectedCohort}
                             />
+                            {selectedCohort && (
+                                <button
+                                    onClick={() => {
+                                        if (confirm(`¿Estás seguro de que quieres restaurar las actividades de todos los estudiantes de la cohorte "${selectedCohort}"?`)) {
+                                            alert(`Funcionalidad de restaurar cohorte "${selectedCohort}" - En desarrollo`)
+                                        }
+                                    }}
+                                    className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium rounded-md transition-colors"
+                                >
+                                    Restaurar Cohorte
+                                </button>
+                            )}
                             <NavButton
                                 size="sm"
                                 href="/admin/students/new"
