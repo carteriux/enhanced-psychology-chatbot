@@ -35,30 +35,36 @@ app.UseCors("AllowAll");
 // Simple health check endpoint
 app.MapGet("/health", () => "API is running");
 
-// Working students endpoint for frontend
-app.MapGet("/api/students", () => 
+// Working students endpoint for frontend (supports optional cohort filter)
+app.MapGet("/api/students", (string? cohort) => 
 {
+    var allStudents = new[] {
+        new {
+            idUser = 1,
+            firstName = "Magda",
+            middleName = "",
+            lastName = "Sanchez Morales", 
+            enrollmentNumber = "10808",
+            cohort = "Maestria Puebla 36"
+        },
+        new {
+            idUser = 2,
+            firstName = "Sergio",
+            middleName = "", 
+            lastName = "Rosas navarro",
+            enrollmentNumber = "10486", 
+            cohort = "Maestria GDL 36"
+        }
+    };
+
+    var filtered = string.IsNullOrEmpty(cohort)
+        ? allStudents
+        : Array.FindAll(allStudents, s => string.Equals(s.cohort, cohort, StringComparison.OrdinalIgnoreCase));
+
     var response = new {
         success = true,
         data = new {
-            users = new[] {
-                new {
-                    idUser = 1,
-                    firstName = "Magda",
-                    middleName = "",
-                    lastName = "Sanchez Morales", 
-                    enrollmentNumber = "10808",
-                    cohort = "Maestria Puebla 36"
-                },
-                new {
-                    idUser = 2,
-                    firstName = "Sergio",
-                    middleName = "", 
-                    lastName = "Rosas navarro",
-                    enrollmentNumber = "10486", 
-                    cohort = "Maestria GDL 36"
-                }
-            }
+            users = filtered
         }
     };
     
