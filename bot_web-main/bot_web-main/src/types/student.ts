@@ -14,7 +14,7 @@ export type ApiStudent = {
     email: string
     firstName: string
     lastName: string
-    middleName: string
+    middleName?: string
     enrollmentNumber: string
     isFirstTime: boolean | null
     lastAccessDate: string | null
