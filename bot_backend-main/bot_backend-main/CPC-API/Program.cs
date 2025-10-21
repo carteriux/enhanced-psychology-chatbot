@@ -276,6 +276,26 @@ app.MapGet("/api/UserActivities/GetActivitiesByUserId/2", () =>
     return Results.Json(response);
 });
 
+// Get single activity by ID
+app.MapGet("/api/UserActivities/GetActivityById", (int id, int idUser) => 
+{
+    var activity = new {
+        id,
+        progressPercentage = 0,
+        filePath = id == 1 ? "/activities/chatbot" : "/activities/assessment",
+        idActivity = id,
+        activityName = id == 1 ? "Chatbot" : "Assessment",
+        count = 0,
+        endDateTime = (string?)null
+    };
+    
+    var response = new { 
+        success = true, 
+        data = activity
+    };
+    return Results.Json(response);
+});
+
 // Reset activities for all students in a cohort (testing mode)
 app.MapPost("/api/UserActivities/ResetActivitiesByCohort", (HttpRequest req) =>
 {
