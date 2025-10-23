@@ -401,6 +401,6 @@ app.MapGet("/api/Cohort", () =>
     });
 });
 
-app.MapControllers();
+// app.MapControllers();
 
 app.Run();
