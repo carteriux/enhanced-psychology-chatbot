@@ -27,24 +27,15 @@ if ($LASTEXITCODE -ne 0) {
 }
 Write-Host "Autenticado como: $account" -ForegroundColor Green
 
-# 2. Configurar Docker para usar GCR
-Write-Host "`n[2/4] Configurando Docker con GCR..." -ForegroundColor Yellow
-gcloud auth configure-docker --quiet
-if ($LASTEXITCODE -ne 0) { Write-Host "ERROR configurando Docker" -ForegroundColor Red; exit 1 }
-
-# 3. Build de la imagen Docker
-# NOTA: El Dockerfile esta en CPC-API/ pero necesita el contexto del solution completo
-Write-Host "`n[3/4] Construyendo imagen Docker..." -ForegroundColor Yellow
-docker build -t $IMAGE_FULL -f "$SOURCE_DIR\CPC-API\Dockerfile" $SOURCE_DIR
-if ($LASTEXITCODE -ne 0) { Write-Host "ERROR en docker build" -ForegroundColor Red; exit 1 }
-
-# Push al Container Registry
-docker push $IMAGE_FULL
-if ($LASTEXITCODE -ne 0) { Write-Host "ERROR en docker push" -ForegroundColor Red; exit 1 }
+# 2. Build con Cloud Build (no requiere Docker local)
+# NOTA: El Dockerfile raiz del solution copia todo el contexto correctamente
+Write-Host "`n[2/3] Construyendo imagen con Cloud Build..." -ForegroundColor Yellow
+gcloud builds submit $SOURCE_DIR --tag $IMAGE_FULL --project $PROJECT_ID
+if ($LASTEXITCODE -ne 0) { Write-Host "ERROR en Cloud Build" -ForegroundColor Red; exit 1 }
 Write-Host "Imagen subida: $IMAGE_FULL" -ForegroundColor Green
 
-# 4. Deploy en Cloud Run
-Write-Host "`n[4/4] Desplegando en Cloud Run..." -ForegroundColor Yellow
+# 3. Deploy en Cloud Run (con VPC connector para MySQL privado)
+Write-Host "`n[3/3] Desplegando en Cloud Run..." -ForegroundColor Yellow
 gcloud run deploy $SERVICE `
     --image $IMAGE_FULL `
     --project $PROJECT_ID `
@@ -56,6 +47,9 @@ gcloud run deploy $SERVICE `
     --min-instances 1 `
     --max-instances 2 `
     --timeout 60 `
+    --vpc-connector chatbot-connector `
+    --vpc-egress all `
+    --add-cloudsql-instances chatbots-452017:us-south1:cpc-chatbot `
     --quiet
 
 if ($LASTEXITCODE -ne 0) { Write-Host "ERROR en el deploy" -ForegroundColor Red; exit 1 }
