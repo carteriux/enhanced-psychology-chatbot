@@ -18,4 +18,9 @@ namespace CPC.Domain.DTOs
         public string user_id { get; set; }
         public string activity_id { get; set; }
     }
+
+    public class RequestResetHistoryDTO
+    {
+        public string user_id { get; set; }
+    }
 }

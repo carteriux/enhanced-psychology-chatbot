@@ -160,7 +160,15 @@ namespace CPC.Application.Services
                     
                     await this._repository.UpdateActivityByUserIdAsync(activity);
                 }
-                
+
+                // Limpiar historial de Firestore para que el bot Python no bloquee al alumno
+                var user = await this._userRepository.GetUserByIdAsync(idUser);
+                var resetHistoryRequest = new RequestResetHistoryDTO { user_id = user.EnrollmentNumber };
+                await WSHelper.CallWebServiceJsonAsync<object>(
+                    this._settings.ExternalAPIs.ChatBot + "/reset_history",
+                    resetHistoryRequest.TextJsonSerializerToString(),
+                    HttpMethod.Post);
+
                 response.Result = new ResultMessage 
                 {
                     Success = true,

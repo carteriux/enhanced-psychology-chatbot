@@ -55,6 +55,12 @@ def conversacion(data):
 
         logging.warning(answer)
 
+def reset_user_history(user_id):
+    history = get_session_history(user_id, os.getenv("PROJECT_ID"))
+    history.clear()
+    logging.info(f"Historial de Firestore limpiado para usuario: {user_id}")
+
+
 def generate_doc(data):
 
     user_id = data['user_id']
